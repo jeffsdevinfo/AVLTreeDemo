@@ -139,7 +139,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AVLTree.cpp" />
     <ClCompile Include="AVLTreeDemo.cpp" />
     <ClCompile Include="Base.cpp" />
   </ItemGroup>
