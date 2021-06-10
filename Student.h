@@ -4,7 +4,7 @@
 class Student
 {
 public:
-	Student() {}
+	Student() = default;
 	Student(int age, std::string name) : m_age(age), m_name(name) {}
 	Student(const Student& other)
 	{
@@ -17,8 +17,8 @@ public:
 		m_age = movedStudent.m_age;
 		m_name = movedStudent.m_name;
 	}
-	int m_age;
-	std::string m_name;
+	int m_age{};
+	std::string m_name{};
 	friend std::ostream& operator<< (std::ostream& out, const Student& c) {
 		out << "\nName: " << c.m_name << "\tAge: " << c.m_age;
 		return out;

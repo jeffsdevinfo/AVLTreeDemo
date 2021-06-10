@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClInclude Include="AVLTree.h" />
     <ClInclude Include="AVLTree.hpp" />
+    <ClInclude Include="AVLTreeExec.h" />
     <ClInclude Include="Base.h" />
     <ClInclude Include="Student.h" />
   </ItemGroup>

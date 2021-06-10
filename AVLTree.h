@@ -5,14 +5,6 @@
 #pragma once
 //#include <algorithm>
 #include <iostream>
-#include "Base.h"
-#include "Student.h"
-
-class AVLTreeExec : public Base
-{
-public:
-	void Run();
-};
 
 template <typename TData>
 class Node
