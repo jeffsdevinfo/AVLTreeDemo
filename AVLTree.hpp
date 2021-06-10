@@ -283,8 +283,6 @@ void AVLTreeExec::Run()
     std::cout << "Inserting 5\n";
     tree->InsertNode(5);    
 
-    //Display avl tree with a post order traversal
-    //tree->PostOrderTreeTraversal();
-    
-    tree->TraverseTree(AVLTree<Student>::OrderType::Inorder);
+    //Display avl tree with a post order traversal     
+    tree->TraverseTree(AVLTree<Student>::OrderType::PostOrder);
 }
