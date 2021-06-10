@@ -13,28 +13,63 @@ public:
 	void Run();
 };
 
+class Student
+{
+public:
+	Student() {}
+	Student(int age, std::string name) : m_age(age), m_name(name) {}
+	Student(const Student& other)
+	{
+		m_age = other.m_age;
+		m_name = other.m_name;
+
+	}
+	Student& operator=(Student&& movedStudent)
+	{
+		m_age = movedStudent.m_age;
+		m_name = movedStudent.m_name;
+	}
+	int m_age;
+	std::string m_name;
+	friend std::ostream& operator<< (std::ostream& out, const Student& c) {
+		out << "\nName: " << c.m_name << "\tAge: " << c.m_age;
+		return out;
+	}
+};
+
+template <typename TData>
 class Node
 {
 public:
-	Node* right;
-	Node* left;
+	Node<TData>* right;
+	Node<TData>* left;
 	int val;
+	TData* m_data;
 	//char level;
 	char lbal;
 	char rbal;
-	Node() { right = left = nullptr; val = INT_MIN; lbal = rbal = 0; }
-	Node(int val) { right = left = nullptr; this->val = val; lbal = rbal = 0; }
+	Node() { right = left = nullptr; val = INT_MIN; lbal = rbal = 0; m_data = nullptr; }
+	Node(int val) { right = left = nullptr; this->val = val; lbal = rbal = 0; m_data = nullptr; }
+	Node(const Node<TData>& other) { std::cout << "Node Copy Constructor\n"; right = left = nullptr; this->val = val; lbal = rbal = 0; m_data = nullptr; }
 	int Height() { if (lbal > rbal)return lbal; else return rbal; }
 	bool CheckBalance() { if (abs(rbal - lbal) < 2) return true; else return false; }
+	void MoveData(TData&& movedData)
+	{
+		m_data = movedData;
+		movedData = nullptr;
+	}
 };
+
+template <typename TData>
 class AVLTree
 {
 private:
-	void InsertNodeRecurse(Node*& child, int val);
-	void PostOrderTreeTraversal(Node* curr);
+	void InsertNodeRecurse(Node<TData>*& curr, int val);
+	void PreOrderTreeTraversal(Node<TData>* curr);
+	void InOrderTreeTraversal(Node<TData>* curr);	
+	void PostOrderTreeTraversal(Node<TData>* curr);
 	char traverseState[2];
-	Node* root;
-
+	Node<TData>* root;	
 public:
 	AVLTree() {
 		root = nullptr;
@@ -42,14 +77,19 @@ public:
 		traverseState[0] = '0';
 	}
 
+	enum OrderType { Inorder, PreOrder, PostOrder };
 	bool InsertNode(int val);
 	bool DeleteNode(int val);
-	void LLRot(Node*& child);
-	void LRRot(Node*& child);
-	void RRRot(Node*& child);
-	void RLRot(Node*& child);
+	void LLRot(Node<TData>*& child);
+	void LRRot(Node<TData>*& child);
+	void RRRot(Node<TData>*& child);
+	void RLRot(Node<TData>*& child);
 	void InsertTraverseState(char tState);
-	Node* Rebalance(Node*& BalanceNode);
+	Node<TData>* Rebalance(Node<TData>*& BalanceNode);
+	void TraverseTree(OrderType order);
+	void InOrderTreeTraversal();
+	void PreorderTreeTraversal();
 	void PostOrderTreeTraversal();
 };
 
+#include "AVLTree.hpp"
