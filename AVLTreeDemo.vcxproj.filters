@@ -32,5 +32,8 @@
     <ClInclude Include="AVLTree.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Student.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
