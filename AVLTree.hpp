@@ -148,7 +148,7 @@ void AVLTree<TData>::PreorderTreeTraversal()
     {
         return;
     }
-    InOrderTreeTraversal(root);
+    PreorderTreeTraversal(root);
 }
 
 template <typename TData>
